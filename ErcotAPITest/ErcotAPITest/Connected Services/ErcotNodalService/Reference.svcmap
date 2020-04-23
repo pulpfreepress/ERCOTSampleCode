@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c196440b-9ea4-42f9-9c72-60ec6a21e2f4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>true</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="C:\Users\swodog\Desktop\Projects\ErcotAPITest\ErcotAPITest\External_Web_Services_XSD_V1\Nodal.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="xmldsig-core-schema.xsd" MetadataType="Schema" ID="cd825bd9-4beb-441c-ba44-0086ad9d419e" SourceId="1" SourceUrl="file:///C:/Users/swodog/Desktop/Projects/ErcotAPITest/ErcotAPITest/External_Web_Services_XSD_V1/xmldsig-core-schema.xsd" />
+    <MetadataFile FileName="Message.xsd" MetadataType="Schema" ID="f08b9c21-4201-4c0e-bdec-7f91168910ec" SourceId="1" SourceUrl="file:///C:/Users/swodog/Desktop/Projects/ErcotAPITest/ErcotAPITest/External_Web_Services_XSD_V1/Message.xsd" />
+    <MetadataFile FileName="WSS200401wssecurity-utility-10.xsd" MetadataType="Schema" ID="5a80448d-7cd6-46c4-8101-57aaa73b7d2a" SourceId="1" SourceUrl="file:///C:/Users/swodog/Desktop/Projects/ErcotAPITest/ErcotAPITest/External_Web_Services_XSD_V1/WSS200401wssecurity-utility-10.xsd" />
+    <MetadataFile FileName="xml.xsd" MetadataType="Schema" ID="c4b4d0b4-7523-42e6-a40b-2a7fcd9ed182" SourceId="1" SourceUrl="http://www.w3.org/2001/xml.xsd" />
+    <MetadataFile FileName="Nodal.wsdl" MetadataType="Wsdl" ID="e9cc5824-4b0e-4be2-ad23-a13ffa62ba6d" SourceId="1" SourceUrl="file:///C:/Users/swodog/Desktop/Projects/ErcotAPITest/ErcotAPITest/External_Web_Services_XSD_V1/Nodal.wsdl" />
+    <MetadataFile FileName="WSS200401wssecurity-secext-10.xsd" MetadataType="Schema" ID="54f473c1-6a41-4254-8fe4-633aeecbacf9" SourceId="1" SourceUrl="file:///C:/Users/swodog/Desktop/Projects/ErcotAPITest/ErcotAPITest/External_Web_Services_XSD_V1/WSS200401wssecurity-secext-10.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

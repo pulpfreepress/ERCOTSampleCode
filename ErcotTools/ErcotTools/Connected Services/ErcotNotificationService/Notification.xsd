@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:wsnt="http://www.ercot.com/schema/2007-06/nodal/notification" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.ercot.com/schema/2007-06/nodal/notification" version="0.2" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="NotificationMessageHolderType">
+    <xsd:sequence>
+      <xsd:element name="Message">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:any namespace="##any" processContents="lax" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="NotificationMessage" type="wsnt:NotificationMessageHolderType" />
+  <xsd:element name="Notify">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" ref="wsnt:NotificationMessage" />
+        <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Acknowledge">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="ReplyCode" type="xsd:string" />
+        <xsd:element minOccurs="0" name="Timestamp" type="xsd:dateTime" />
+        <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Fault">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="FaultCode" type="xsd:string" />
+        <xsd:element minOccurs="0" name="Timestamp" type="xsd:dateTime" />
+        <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

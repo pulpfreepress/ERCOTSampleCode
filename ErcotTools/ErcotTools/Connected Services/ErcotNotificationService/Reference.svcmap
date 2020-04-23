@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d39464d7-058a-4a30-bd93-1a8bd054489b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="file://C:\Users\swodog\Desktop\Projects\ErcotTools\ErcotTools\External_Web_Services_XSD_V1\Notification.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Notification.xsd" MetadataType="Schema" ID="cf1a24b5-4197-495b-85ae-00b42e6b20c0" SourceId="1" SourceUrl="file:///C:/Users/swodog/Desktop/Projects/ErcotTools/ErcotTools/External_Web_Services_XSD_V1/Notification.xsd" />
+    <MetadataFile FileName="WS-BaseNotification.wsdl" MetadataType="Wsdl" ID="3e6d2d1b-85a6-4ec6-b8bc-383ae31f11ae" SourceId="1" SourceUrl="file:///C:/Users/swodog/Desktop/Projects/ErcotTools/ErcotTools/External_Web_Services_XSD_V1/Notification.wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

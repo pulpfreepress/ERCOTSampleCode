@@ -1,0 +1,3073 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:ns1="http://www.ercot.com/schema/2006-03/frameworkservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.ercot.com/wsdl/marketrak/2006-04" xmlns:ns0="http://www.ercot.com/schema/retail/2006-01" name="Untitled" targetNamespace="http://www.ercot.com/wsdl/marketrak/2006-04" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.ercot.com/schema/2006-03/frameworkservice" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.ercot.com/schema/2006-03/frameworkservice" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:complexType name="ErrorReport">
+        <xsd:sequence>
+          <xsd:element form="unqualified" name="StackTrace" type="xsd:string" />
+          <xsd:element form="unqualified" name="Msg" type="xsd:string" />
+          <xsd:element form="unqualified" name="FullClass" type="xsd:string" />
+          <xsd:element form="unqualified" name="Class" type="xsd:string" />
+          <xsd:element form="unqualified" name="ProcessStack" type="xsd:string" />
+          <xsd:element minOccurs="0" form="unqualified" name="MsgCode" type="xsd:string" />
+          <xsd:element minOccurs="0" form="unqualified" name="Data" type="ns1:anydata" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="anydata">
+        <xsd:sequence>
+          <xsd:any namespace="##any" processContents="lax" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ActionCode" type="xsd:string" />
+      <xsd:element name="BPCode" type="xsd:string" />
+      <xsd:element name="BPExceptionDetail">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns1:ExceptionRequest" />
+            <xsd:element minOccurs="0" ref="ns1:BPI" />
+            <xsd:element minOccurs="0" ref="ns1:SIs" />
+            <xsd:element minOccurs="0" ref="ns1:Payloads" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="BPI">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" ref="ns1:BPIId" />
+            <xsd:element minOccurs="0" ref="ns1:BPCode" />
+            <xsd:element minOccurs="0" ref="ns1:StartDate" />
+            <xsd:element minOccurs="0" ref="ns1:EndDate" />
+            <xsd:element minOccurs="0" ref="ns1:ObjectType" />
+            <xsd:element minOccurs="0" ref="ns1:ObjectId" />
+            <xsd:element minOccurs="0" ref="ns1:ExternalId" />
+            <xsd:element minOccurs="0" ref="ns1:Success" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="BPIId" type="xsd:integer" />
+      <xsd:element name="BPIs">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" ref="ns1:BPI" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CheckPointName" type="xsd:string" />
+      <xsd:element name="CloseBPIRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns1:BPIId" />
+            <xsd:element ref="ns1:Success" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CloseBPISIRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" ref="ns1:BPIId" />
+            <xsd:element ref="ns1:SIId" />
+            <xsd:element ref="ns1:Success" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CloseSIRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns1:SIId" />
+            <xsd:element ref="ns1:Success" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CompositeService" type="xsd:string" />
+      <xsd:element name="CreateBPIRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns1:BPCode" />
+            <xsd:element minOccurs="0" ref="ns1:ObjectType" />
+            <xsd:element minOccurs="0" ref="ns1:ObjectId" />
+            <xsd:element minOccurs="0" ref="ns1:ExternalId" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateBPISIRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" ref="ns1:CreateBPIRequest" />
+            <xsd:element ref="ns1:CreateSIRequest" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateBPISIResult">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" ref="ns1:BPIId" />
+            <xsd:element ref="ns1:SIId" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateSIRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" ref="ns1:BPIId" />
+            <xsd:element minOccurs="0" ref="ns1:InitiatingSIId" />
+            <xsd:element minOccurs="0" ref="ns1:ParentSIId" />
+            <xsd:element minOccurs="0" ref="ns1:SRCode" />
+            <xsd:element minOccurs="0" ref="ns1:SRSubCode" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CustomId" type="xsd:string" />
+      <xsd:element name="DefinitionName" type="xsd:string" />
+      <xsd:element name="ERCOTExceptionCode" type="xsd:string" />
+      <xsd:element name="ERCOTExceptionMessage" type="xsd:string" />
+      <xsd:element name="EndDate" type="xsd:dateTime" />
+      <xsd:element name="EngineName" type="xsd:string" />
+      <xsd:element name="ErrorReport" type="ns1:ErrorReport" />
+      <xsd:element name="ExceptionCategory">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="BUSINESS" />
+            <xsd:enumeration value="TECHNICAL" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="ExceptionError">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns1:ExceptionCategory" />
+            <xsd:element ref="ns1:Severity" />
+            <xsd:element minOccurs="0" ref="ns1:Message" />
+          </xsd:sequence>
+          <xsd:attribute ref="ns1:ExceptionType" />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExceptionErrorResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" ref="ns1:ExceptionId" />
+            <xsd:element maxOccurs="unbounded" ref="ns1:ExceptionError" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExceptionId" type="xsd:integer" />
+      <xsd:element name="ExceptionRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" ref="ns1:ExceptionId" />
+            <xsd:choice>
+              <xsd:element ref="ns1:BPCode" />
+              <xsd:element ref="ns1:BPIId" />
+            </xsd:choice>
+            <xsd:element minOccurs="0" ref="ns1:SIId" />
+            <xsd:element minOccurs="0" ref="ns1:Severity" />
+            <xsd:element minOccurs="0" ref="ns1:PayloadId" />
+            <xsd:element minOccurs="0" ref="ns1:ERCOTExceptionCode" />
+            <xsd:element minOccurs="0" ref="ns1:ERCOTExceptionMessage" />
+            <xsd:element minOccurs="0" ref="ns1:CheckPointName" />
+            <xsd:element minOccurs="0" ref="ns1:Recoverable" />
+            <xsd:element minOccurs="0" ref="ns1:NotificationDefinitionName" />
+            <xsd:element minOccurs="0" ref="ns1:ExceptionTimestamp" />
+            <xsd:element minOccurs="0" ref="ns1:ErrorReport" />
+            <xsd:element ref="ns1:ProcessContext" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExceptionTimestamp" type="xsd:dateTime" />
+      <xsd:element name="ExternalId" type="xsd:string" />
+      <xsd:element name="Fault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ExceptionCode" type="xsd:string" />
+            <xsd:element name="ExceptionMessage" type="xsd:string" />
+            <xsd:element name="ExceptionTimestamp" type="xsd:dateTime" />
+            <xsd:element minOccurs="0" name="FaultId" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InitiatingSIId" type="xsd:integer" />
+      <xsd:element name="Message" type="xsd:string" />
+      <xsd:element name="Notification">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns1:BPIId" />
+            <xsd:element ref="ns1:ParentSIId" />
+            <xsd:element ref="ns1:Message" />
+            <xsd:element ref="ns1:DefinitionName" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="NotificationDefinitionName" type="xsd:string" />
+      <xsd:element name="ObjectId" type="xsd:string" />
+      <xsd:element name="ObjectType" type="xsd:string" />
+      <xsd:element name="ParentSIId" type="xsd:integer" />
+      <xsd:element name="Payload">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns1:PayloadId" />
+            <xsd:element ref="ns1:SIId" />
+            <xsd:element minOccurs="0" ref="ns1:ActionCode" />
+            <xsd:element minOccurs="0" ref="ns1:StartDate" />
+            <xsd:element ref="ns1:Message" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PayloadId" type="xsd:integer" />
+      <xsd:element name="Payloads">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" ref="ns1:Payload" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PersistPayloadRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" ref="ns1:SIId" />
+            <xsd:element minOccurs="0" ref="ns1:ActionCode" />
+            <xsd:element ref="ns1:Message" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ProcessContext">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns1:ProcessId" />
+            <xsd:element ref="ns1:ProjectName" />
+            <xsd:element ref="ns1:EngineName" />
+            <xsd:element ref="ns1:RestartedFromCheckpoint" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" ref="ns1:TrackingInfo" />
+            <xsd:element minOccurs="0" ref="ns1:CustomId" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ProcessId" type="xsd:integer" />
+      <xsd:element name="ProcessIdentifiers">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="ns1:BPIId" />
+            <xsd:element minOccurs="0" ref="ns1:InitiatingSIId" />
+            <xsd:element minOccurs="0" ref="ns1:ParentSIId" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ProcessStack" type="xsd:string" />
+      <xsd:element name="ProjectName" type="xsd:string" />
+      <xsd:element name="Recoverable" type="xsd:boolean" />
+      <xsd:element name="RestartedFromCheckpoint" type="xsd:boolean" />
+      <xsd:element name="SI">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" ref="ns1:SIId" />
+            <xsd:element minOccurs="0" ref="ns1:InitiatingSIId" />
+            <xsd:element minOccurs="0" ref="ns1:ParentSIId" />
+            <xsd:element minOccurs="0" ref="ns1:BPIId" />
+            <xsd:element minOccurs="0" ref="ns1:SRCode" />
+            <xsd:element minOccurs="0" ref="ns1:SRSubCode" />
+            <xsd:element minOccurs="0" ref="ns1:StartDate" />
+            <xsd:element minOccurs="0" ref="ns1:EndDate" />
+            <xsd:element minOccurs="0" ref="ns1:Success" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SIId" type="xsd:integer" />
+      <xsd:element name="SIs">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" ref="ns1:SI" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SRCode" type="xsd:string" />
+      <xsd:element name="SRSubCode" type="xsd:string" />
+      <xsd:element name="Severity">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="WARN" />
+            <xsd:enumeration value="ERROR" />
+            <xsd:enumeration value="FATAL" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="StackTrace" type="xsd:string" />
+      <xsd:element name="StartDate" type="xsd:dateTime" />
+      <xsd:element name="SubmitPayloadRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" ref="ns1:SIId" />
+            <xsd:element ref="ns1:Message" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Success" type="xsd:boolean" />
+      <xsd:element name="TIBCOExceptionCode" type="xsd:string" />
+      <xsd:element name="TIBCOExceptionMsg" type="xsd:string" />
+      <xsd:element name="TrackingInfo" type="xsd:string" />
+      <xsd:attribute name="ExceptionType">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="NotFound" />
+            <xsd:enumeration value="Invalid" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:TTISSUE="http://www.ercot.com/schema/retail/2006-01" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.ercot.com/schema/retail/2006-01" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:complexType name="AMSLSEIntervalDisputeRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:UIDAMSInterval" />
+          <xsd:element ref="TTISSUE:Origin" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:StopTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AMSLSEIntervalDisputeType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:UIDAMSInterval" />
+          <xsd:element ref="TTISSUE:Origin" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:StopTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AMSLSEIntervalMissingRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:StopTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AMSLSEIntervalMissingType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:StopTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AddressType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Street" />
+          <xsd:element ref="TTISSUE:City" />
+          <xsd:element ref="TTISSUE:State" />
+          <xsd:element ref="TTISSUE:ZipCode" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CancelWARespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:Priority" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SMRD" />
+          <xsd:element minOccurs="0" ref="TTISSUE:bDaysTillSMRD" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CancelWAType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateEvaluationWindow" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CancelWoARespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CancelWoAType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CommentsType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:UserName" />
+          <xsd:element ref="TTISSUE:DateTime" />
+          <xsd:element ref="TTISSUE:CommentsText" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CustomerRescissionRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GainingCRStartDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GainingCRROR" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSiebelStatus" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSiebelCheckDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ProposedRegainDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingBGN02" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TransactionDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:UnexecutableReason" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSubmitDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:InvalidIAGReason" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainDate" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CustomerRescissionType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="D2d997RespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:TrxnDate" />
+          <xsd:element ref="TTISSUE:GSNum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ISANum" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="D2d997Type">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:TrxnDate" />
+          <xsd:element ref="TTISSUE:GSNum" />
+          <xsd:element ref="TTISSUE:ISANum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DateRangeNameType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="TTISSUE:FromDateTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ToDateTime" />
+        </xsd:sequence>
+        <xsd:attribute name="name" use="required">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="LastModified" />
+              <xsd:enumeration value="Submit" />
+              <xsd:enumeration value="Close" />
+              <xsd:enumeration value="StateChange" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:complexType>
+      <xsd:complexType name="DevLSEResponseType">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:IssueDevLSERespType">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" ref="TTISSUE:FinalAgreementStart" />
+              <xsd:element minOccurs="0" ref="TTISSUE:FinalAgreementStop" />
+              <xsd:element minOccurs="0" ref="TTISSUE:OrigReqStart" />
+              <xsd:element minOccurs="0" ref="TTISSUE:OrigReqStop" />
+              <xsd:element minOccurs="0" ref="TTISSUE:OrigReqNewStart" />
+              <xsd:element minOccurs="0" ref="TTISSUE:OrigReqNewStop" />
+              <xsd:element minOccurs="0" ref="TTISSUE:LSEDUNS" />
+              <xsd:element minOccurs="0" ref="TTISSUE:UsageMatchesDateReq" />
+              <xsd:element minOccurs="0" ref="TTISSUE:UsageLoadedDateReq" />
+              <xsd:element minOccurs="0" ref="TTISSUE:AnotherCRInvolved" />
+              <xsd:element minOccurs="0" ref="TTISSUE:NewStopTime" />
+              <xsd:element minOccurs="0" ref="TTISSUE:NewStartTime" />
+              <xsd:element minOccurs="0" ref="TTISSUE:UsageForTimePeriod" />
+              <xsd:element minOccurs="0" ref="TTISSUE:ReqResponse" />
+              <xsd:element minOccurs="0" ref="TTISSUE:PremiseType" />
+              <xsd:element minOccurs="0" ref="TTISSUE:AnalysisInfo" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:simpleType name="DisputeMissingDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Dispute" />
+          <xsd:enumeration value="Missing" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="ERCOTCategoryDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Data Integrity" />
+          <xsd:enumeration value="Other" />
+          <xsd:enumeration value="LPA - Meter Type" />
+          <xsd:enumeration value="LPA - Premise Type" />
+          <xsd:enumeration value="LPA - Profile Type" />
+          <xsd:enumeration value="LPA - Substation" />
+          <xsd:enumeration value="LPA - Weather Zone" />
+          <xsd:enumeration value="LPA - Zip Code" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="ERCOTInitiatedType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:ERCOTCategory" />
+          <xsd:element minOccurs="0" ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:UIDEsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StationCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ProfileCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:LossCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegionCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ZipCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:MeterType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:Total" />
+          <xsd:element minOccurs="0" ref="TTISSUE:AddTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ExceptionType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ProfileStartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewProfileCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewPremiseType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:kWhUse" />
+          <xsd:element minOccurs="0" ref="TTISSUE:kW" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SecHikW" />
+          <xsd:element minOccurs="0" ref="TTISSUE:HighkW" />
+          <xsd:element minOccurs="0" ref="TTISSUE:Status" />
+          <xsd:element minOccurs="0" ref="TTISSUE:WeatherZone" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewWeatherZone" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SubStationPercent" />
+          <xsd:element minOccurs="0" ref="TTISSUE:PremiseType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:IDRNonIDR" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ERCOTInitiatedTypeResponse">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:ERCOTCategory" />
+          <xsd:element minOccurs="0" ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:UIDEsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StationCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ProfileCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:PremiseType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:LossCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegionCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ZipCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:MeterType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:Total" />
+          <xsd:element minOccurs="0" ref="TTISSUE:AddTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ExceptionType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SiebelStatus" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SiebelSubStatus" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SiebelCheckDateTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ProfileStartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewProfileCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewPremiseType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:kWhUse" />
+          <xsd:element minOccurs="0" ref="TTISSUE:kW" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SecHikW" />
+          <xsd:element minOccurs="0" ref="TTISSUE:HighkW" />
+          <xsd:element minOccurs="0" ref="TTISSUE:Status" />
+          <xsd:element minOccurs="0" ref="TTISSUE:WeatherZone" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewWeatherZone" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SubStationPercent" />
+          <xsd:element minOccurs="0" ref="TTISSUE:IDRNonIDR" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ErrorType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:ErrorCode" />
+          <xsd:element ref="TTISSUE:ErrorDescription" />
+          <xsd:element ref="TTISSUE:ErrorDateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExistERCOTNotMPType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:AddTime" />
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element ref="TTISSUE:NewStopTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExistERCOTStartTimeType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:AddTime" />
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExistInactiveRecordDateType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:AddTime" />
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExistMPNotERCOTType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:StationCode" />
+          <xsd:element ref="TTISSUE:ProfileCode" />
+          <xsd:element ref="TTISSUE:LossCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:RegionCode" />
+          <xsd:element ref="TTISSUE:ServAddress" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExistStatusType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:AddTime" />
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ExistUnretireESIIDType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:AddTime" />
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FileAttachmentType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:UserName" />
+          <xsd:element ref="TTISSUE:DateTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:FileTitle" />
+          <xsd:element ref="TTISSUE:FileName" />
+          <xsd:element ref="TTISSUE:FileAttachmentNumber" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="IDDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="IDRNonIDRDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="IDR" />
+          <xsd:enumeration value="Non-IDR" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="IDRUsageDateType">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:IDRUsageType">
+            <xsd:sequence>
+              <xsd:element ref="TTISSUE:NewStartTime" />
+              <xsd:element ref="TTISSUE:NewStopTime" />
+              <xsd:element ref="TTISSUE:NewTotal" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="IDRUsageMPNotErcotType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:NewStopTime" />
+          <xsd:element ref="TTISSUE:Channel" />
+          <xsd:element ref="TTISSUE:NewTotal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IDRUsageType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:StopTime" />
+          <xsd:element ref="TTISSUE:UIDChannelCut" />
+          <xsd:element ref="TTISSUE:AddTime" />
+          <xsd:element ref="TTISSUE:Origin" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IDRUsagekWhType">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:IDRUsageType">
+            <xsd:sequence>
+              <xsd:element ref="TTISSUE:Channel" />
+              <xsd:element ref="TTISSUE:NewTotal" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="IaGgResponseType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GainingCRStartDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GainingCRROR" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSiebelStatus" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSiebelCheckDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ProposedRegainDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingBGN02" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TransactionDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:UnexecutableReason" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSubmitDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:InvalidIAGReason" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IaGgType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IaGlResponseType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GainingCRStartDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GainingCRROR" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSiebelStatus" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSiebelCheckDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ProposedRegainDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingBGN02" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TransactionDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:UnexecutableReason" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSubmitDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:InvalidIAGReason" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IaGlType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IaSRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:GainingLosing" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IaSResponseType">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:IaSRespType">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" maxOccurs="3" ref="TTISSUE:MPVote" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="IaSType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:GainingLosing" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueD2DResponseType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:SubTypeD2DResponse" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SiebelStatus" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SiebelSubStatus" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SiebelCheckDateTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:PremiseType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueD2DType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:SubTypeD2D" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueDevCharRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element ref="TTISSUE:AddTime" />
+          <xsd:element ref="TTISSUE:SubTypeDevChar" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueDevCharType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element ref="TTISSUE:AddTime" />
+          <xsd:element ref="TTISSUE:SubTypeDevChar" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueDevExistRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:SubTypeDevExist" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueDevExistType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:SubTypeDevExist" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueDevIDRRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:SubTypeDevIDR" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueDevIDRType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:SubTypeDevIDR" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueDevLSERespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:AddTime" />
+          <xsd:element ref="TTISSUE:ProfileCode" />
+          <xsd:element ref="TTISSUE:REPCode" />
+          <xsd:element ref="TTISSUE:Status" />
+          <xsd:element ref="TTISSUE:SubTypeDevLSE" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueDevLSEType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:AddTime" />
+          <xsd:element ref="TTISSUE:SubTypeDevLSE" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueDevNIDRRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:MeterType" />
+          <xsd:element ref="TTISSUE:SubTypeNonIDR" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueDevNIDRType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:MeterType" />
+          <xsd:element ref="TTISSUE:SubTypeNonIDR" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueQueryRequest">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:QueryType" />
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="IssueQueryResponse">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:QueryType">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" maxOccurs="unbounded" ref="TTISSUE:IssueNumber" />
+              <xsd:element ref="TTISSUE:Response" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:simpleType name="IssueStatusType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="New" />
+          <xsd:enumeration value="Working" />
+          <xsd:enumeration value="Closed" />
+          <xsd:enumeration value="Pending Complete" />
+          <xsd:enumeration value="Withdrawn" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="IssueSubmitRequest">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:IssueType">
+            <xsd:sequence>
+              <xsd:element ref="TTISSUE:Transition" />
+              <xsd:element ref="TTISSUE:AlternateUserID" />
+            </xsd:sequence>
+            <xsd:attribute name="app" type="xsd:NCName" />
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="IssueSubmitResponse">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:ResponseType">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" ref="TTISSUE:IssueNumber" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="IssueType">
+        <xsd:choice>
+          <xsd:element ref="TTISSUE:IssueD2D" />
+          <xsd:element ref="TTISSUE:IssueDevChar" />
+          <xsd:element ref="TTISSUE:IssueDevExist" />
+          <xsd:element ref="TTISSUE:IssueDevIDR" />
+          <xsd:element ref="TTISSUE:IssueDevLSE" />
+          <xsd:element ref="TTISSUE:IssueDevNIDR" />
+          <xsd:element ref="TTISSUE:IssueERCOTInitiated" />
+          <xsd:element ref="TTISSUE:IssueLoadProfile" />
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:complexType name="IssueUpdateD2DType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="TTISSUE:SubTypeUpdateD2D" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IssueUpdateRequest">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:UpdateRequestIssueType">
+            <xsd:sequence>
+              <xsd:element ref="TTISSUE:IssueNumber" />
+              <xsd:element minOccurs="0" ref="TTISSUE:NewOwner" />
+              <xsd:element minOccurs="0" ref="TTISSUE:GroupName" />
+              <xsd:element minOccurs="0" ref="TTISSUE:GroupNumber" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="IssueUpdateResponse">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:ResponseType">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" ref="TTISSUE:IssueNumber" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="LSEPresentBothEndDateNoMatchType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element ref="TTISSUE:NewStopTime" />
+          <xsd:element minOccurs="0" maxOccurs="3" ref="TTISSUE:SHwDfEPs" />
+          <xsd:element minOccurs="0" ref="TTISSUE:AdditionalServiceHistory" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LSEPresentBothStartAndEndDateNoMatchType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:NewStopTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element minOccurs="0" maxOccurs="3" ref="TTISSUE:SHwDfEPs" />
+          <xsd:element minOccurs="0" ref="TTISSUE:AdditionalServiceHistory" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LSEPresentBothStartDateNoMatchType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element minOccurs="0" maxOccurs="3" ref="TTISSUE:SHwDfEPs" />
+          <xsd:element minOccurs="0" ref="TTISSUE:AdditionalServiceHistory" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LSEPresentErcotNotMPType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element minOccurs="0" maxOccurs="3" ref="TTISSUE:SHwDfEPs" />
+          <xsd:element minOccurs="0" ref="TTISSUE:AdditionalServiceHistory" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LSEPresentMPNotErcotActiveType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewStartTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LSEPresentMPNotErcotDeEnergizedType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:NewStopTime" />
+          <xsd:element ref="TTISSUE:StopTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LinkedIssueType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:UserName" />
+          <xsd:element ref="TTISSUE:DateTime" />
+          <xsd:element ref="TTISSUE:LinkedIssueNumber" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LoadProfileRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:LoadProfileCategory" />
+          <xsd:element minOccurs="0" ref="TTISSUE:Description" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LoadProfileType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:LoadProfileCategory" />
+          <xsd:element minOccurs="0" ref="TTISSUE:Description" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LossType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewLossCode" />
+          <xsd:element ref="TTISSUE:LossCode" />
+          <xsd:element ref="TTISSUE:ProfileCode" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MPGroupNameType">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:MPType">
+            <xsd:sequence>
+              <xsd:element ref="TTISSUE:GroupName" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="MPGroupNumberType">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:MPType">
+            <xsd:sequence>
+              <xsd:element ref="TTISSUE:GroupNumber" />
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="MPType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Duns" />
+        </xsd:sequence>
+        <xsd:attribute name="role" type="TTISSUE:RoleType" use="required" />
+      </xsd:complexType>
+      <xsd:complexType name="MPVoteType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Duns" />
+          <xsd:element ref="TTISSUE:Vote" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MarketRuleRespType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="TTISSUE:Assignee" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SecondaryAssignee" />
+          <xsd:element minOccurs="0" ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TransactionDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GSNum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ISANum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element ref="TTISSUE:MarketRuleRef" />
+          <xsd:element minOccurs="0" ref="TTISSUE:BusinessProcess" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TDSPData" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MarketRuleType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:MarketRuleRef" />
+          <xsd:element ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TransactionDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GSNum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ISANum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:BusinessProcess" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TDSPData" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MissTrxnRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MissTrxnType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:TrxnMissingType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MoveOutMeterRemovalRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:MeterRemovalDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MoveOutMeterRemovalType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:MeterRemovalDate" />
+          <xsd:element ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NonIDRUsageBothDateType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element ref="TTISSUE:NewStopTime" />
+          <xsd:element ref="TTISSUE:NewTotal" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:StopTime" />
+          <xsd:element ref="TTISSUE:TimeStamp" />
+          <xsd:element ref="TTISSUE:Total" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewONPK" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewOFFPK" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewMDPK" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewSPK" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NonIDRUsageErcotNotMPCancelType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:StopTime" />
+          <xsd:element ref="TTISSUE:TimeStamp" />
+          <xsd:element ref="TTISSUE:Total" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NonIDRUsageErcotNotMPType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:StopTime" />
+          <xsd:element ref="TTISSUE:TimeStamp" />
+          <xsd:element ref="TTISSUE:Total" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NonIDRUsageNotErcotNoTOUType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:NewStopTime" />
+          <xsd:element ref="TTISSUE:NewTotal" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NonIDRUsageNotErcotTOUType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:NewStopTime" />
+          <xsd:element ref="TTISSUE:NewTotal" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewONPK" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewOFFPK" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewMDPK" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewSPK" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NonIDRUsageTDSPNotErcotAdditionalDataType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewStartTime" />
+          <xsd:element ref="TTISSUE:NewStopTime" />
+          <xsd:element ref="TTISSUE:NewTotal" />
+          <xsd:element ref="TTISSUE:NewONPK" />
+          <xsd:element ref="TTISSUE:NewOFFPK" />
+          <xsd:element ref="TTISSUE:NewMDPK" />
+          <xsd:element ref="TTISSUE:NewSPK" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NonIDRUsagekWhType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:UIDEsiID" />
+          <xsd:element ref="TTISSUE:NewTotal" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element ref="TTISSUE:StopTime" />
+          <xsd:element ref="TTISSUE:TimeStamp" />
+          <xsd:element ref="TTISSUE:Total" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewONPK" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewOFFPK" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewMDPK" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewSPK" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NoteAttachmentType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:UserName" />
+          <xsd:element ref="TTISSUE:DateTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NoteTitle" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NoteText" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OtherRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element minOccurs="0" ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GSNum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ISANum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OtherType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element minOccurs="0" ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GSNum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ISANum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PremiseRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:NewPremiseType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PremiseType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:NewPremiseType" />
+          <xsd:element ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ProfileType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewProfileCode" />
+          <xsd:element ref="TTISSUE:ProfileCode" />
+          <xsd:element ref="TTISSUE:LossCode" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ProjRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element minOccurs="0" ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GSNum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ISANum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ProjType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element minOccurs="0" ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GSNum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ISANum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="QueryResponseIssueType">
+        <xsd:complexContent mixed="false">
+          <xsd:extension base="TTISSUE:ResponseIssueType">
+            <xsd:sequence>
+              <xsd:element ref="TTISSUE:IssueNumber" />
+              <xsd:element ref="TTISSUE:SubmitDateTime" />
+              <xsd:element ref="TTISSUE:SubmitSource" />
+              <xsd:element ref="TTISSUE:Title" />
+              <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:MPInvolved" />
+              <xsd:element minOccurs="0" ref="TTISSUE:IssueState" />
+              <xsd:element minOccurs="0" maxOccurs="7" ref="TTISSUE:MPOwner" />
+              <xsd:element minOccurs="0" maxOccurs="7" ref="TTISSUE:MPGroupName" />
+              <xsd:element minOccurs="0" maxOccurs="7" ref="TTISSUE:MPGroupNumber" />
+              <xsd:element ref="TTISSUE:Submitter" />
+              <xsd:element minOccurs="0" ref="TTISSUE:LastModified" />
+              <xsd:element minOccurs="0" ref="TTISSUE:LastModifier" />
+              <xsd:element minOccurs="0" ref="TTISSUE:LastStateChangeDate" />
+              <xsd:element minOccurs="0" ref="TTISSUE:LastStateChanger" />
+              <xsd:element minOccurs="0" ref="TTISSUE:ResponsibleMP" />
+              <xsd:element minOccurs="0" ref="TTISSUE:CloseDateTime" />
+              <xsd:element minOccurs="0" maxOccurs="unbounded" ref="TTISSUE:Comments" />
+              <xsd:element ref="TTISSUE:IssueAvailableDate" />
+              <xsd:element minOccurs="0" ref="TTISSUE:ParentIssueNumber" />
+              <xsd:element minOccurs="0" ref="TTISSUE:FirstTouched" />
+              <xsd:element minOccurs="0" maxOccurs="unbounded" ref="TTISSUE:FileAttachments" />
+              <xsd:element minOccurs="0" maxOccurs="unbounded" ref="TTISSUE:URLAttachments" />
+              <xsd:element minOccurs="0" maxOccurs="unbounded" ref="TTISSUE:LinkedIssues" />
+              <xsd:element minOccurs="0" maxOccurs="unbounded" ref="TTISSUE:NoteAttachments" />
+            </xsd:sequence>
+            <xsd:attribute name="app" type="xsd:NCName" />
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="QueryType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" ref="TTISSUE:DateRangeName" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:IssueType" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:IssueSubType" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:MPInvolved" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:MPGroupNumber" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:MPGroupName" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:MPOwner" />
+          <xsd:element minOccurs="0" maxOccurs="5" ref="TTISSUE:IssueStatus" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:IssueState" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:SubmitSource" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:ResponsibleMP" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:LastModifier" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:LastStateChanger" />
+          <xsd:element minOccurs="0" maxOccurs="3" ref="TTISSUE:PremiseType" />
+          <xsd:element minOccurs="0" maxOccurs="50" ref="TTISSUE:MarketRuleRef" />
+        </xsd:sequence>
+        <xsd:attribute name="app" type="xsd:NCName" />
+      </xsd:complexType>
+      <xsd:complexType name="RedirectFeesRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element ref="TTISSUE:PriorityBGN02" />
+          <xsd:element ref="TTISSUE:PMVIRequestedDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GainingCRStartDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GainingCRROR" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSiebelStatus" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSiebelCheckDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:UnexecutableReason" />
+          <xsd:element minOccurs="0" ref="TTISSUE:InvalidIAGReason" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RedirectFeesType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element ref="TTISSUE:PriorityBGN02" />
+          <xsd:element ref="TTISSUE:PMVIRequestedDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RegionType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewRegionCode" />
+          <xsd:element ref="TTISSUE:RegionCode" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RejectTrxnRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RejectCode" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RejectTrxnType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:TrxnRejectType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element ref="TTISSUE:RejectCode" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RepRecordRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RepRecordType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ResponseIssueType">
+        <xsd:choice>
+          <xsd:element ref="TTISSUE:IssueD2DResponse" />
+          <xsd:element ref="TTISSUE:IssueDevCharResponse" />
+          <xsd:element ref="TTISSUE:IssueDevExistResponse" />
+          <xsd:element ref="TTISSUE:IssueDevIDRResponse" />
+          <xsd:element ref="TTISSUE:IssueDevLSEResponse" />
+          <xsd:element ref="TTISSUE:IssueDevNIDRResponse" />
+          <xsd:element ref="TTISSUE:IssueERCOTInitiatedResponse" />
+          <xsd:element ref="TTISSUE:IssueLoadProfileResponse" />
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:complexType name="ResponseType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:ResponseStatus" />
+          <xsd:element ref="TTISSUE:ResponseDateTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:Error" />
+          <xsd:element minOccurs="0" ref="TTISSUE:WarningDescription" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="RoleType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Submitter" />
+          <xsd:enumeration value="Assignee" />
+          <xsd:enumeration value="TDSP" />
+          <xsd:enumeration value="ERCOT" />
+          <xsd:enumeration value="Gaining" />
+          <xsd:enumeration value="Losing" />
+          <xsd:enumeration value="PriorInvolved" />
+          <xsd:enumeration value="Secondary" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="SHwDfEPType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:RORDuns" />
+          <xsd:element ref="TTISSUE:RORStartTime" />
+          <xsd:element ref="TTISSUE:RORStopTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SafetyNetRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:SpreadsheetSubmitDate" />
+          <xsd:element ref="TTISSUE:RequestedMoveInDate" />
+          <xsd:element ref="TTISSUE:PremiseEnergizeDate" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SafetyNetType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:SpreadsheetSubmitDate" />
+          <xsd:element ref="TTISSUE:RequestedMoveInDate" />
+          <xsd:element ref="TTISSUE:PremiseEnergizeDate" />
+          <xsd:element ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ServiceAddrRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:NewServAddress" />
+          <xsd:element ref="TTISSUE:ServAddress" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ServiceAddrType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:NewServAddress" />
+          <xsd:element ref="TTISSUE:ServAddress" />
+          <xsd:element ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ServiceOrderRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ISANum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GSNum" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ServiceOrderType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:TrxnServOrderType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ISANum" />
+          <xsd:element minOccurs="0" ref="TTISSUE:GSNum" />
+          <xsd:element ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SiebelRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SiebelType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element ref="TTISSUE:CommentsText" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="StationType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:NewStationCode" />
+          <xsd:element ref="TTISSUE:StationCode" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SubTypeD2DResponseType">
+        <xsd:choice>
+          <xsd:element ref="TTISSUE:AMSLSEIntervalDisputeResp" />
+          <xsd:element ref="TTISSUE:AMSLSEIntervalMissingResp" />
+          <xsd:element ref="TTISSUE:CancelWAResp" />
+          <xsd:element ref="TTISSUE:CancelWoAResp" />
+          <xsd:element ref="TTISSUE:CustomerRescissionResp" />
+          <xsd:element ref="TTISSUE:D2d997Resp" />
+          <xsd:element ref="TTISSUE:IaGgResponse" />
+          <xsd:element ref="TTISSUE:IaGlResponse" />
+          <xsd:element ref="TTISSUE:IaSResponse" />
+          <xsd:element ref="TTISSUE:MarketRuleResp" />
+          <xsd:element ref="TTISSUE:MissTrxnResp" />
+          <xsd:element ref="TTISSUE:MoveOutMeterRemovalResp" />
+          <xsd:element ref="TTISSUE:OtherResp" />
+          <xsd:element ref="TTISSUE:PremiseResp" />
+          <xsd:element ref="TTISSUE:ProjResp" />
+          <xsd:element ref="TTISSUE:RedirectFeesResp" />
+          <xsd:element ref="TTISSUE:RejectTrxnResp" />
+          <xsd:element ref="TTISSUE:RepRecordResp" />
+          <xsd:element ref="TTISSUE:SafetyNetResp" />
+          <xsd:element ref="TTISSUE:ServiceAddrResp" />
+          <xsd:element ref="TTISSUE:ServiceOrderResp" />
+          <xsd:element ref="TTISSUE:SiebelResp" />
+          <xsd:element ref="TTISSUE:SwitchHoldRemovalResp" />
+          <xsd:element ref="TTISSUE:UsageBillingResp" />
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:complexType name="SubTypeD2DType">
+        <xsd:choice>
+          <xsd:element ref="TTISSUE:AMSLSEIntervalDispute" />
+          <xsd:element ref="TTISSUE:AMSLSEIntervalMissing" />
+          <xsd:element ref="TTISSUE:CancelWA" />
+          <xsd:element ref="TTISSUE:CancelWoA" />
+          <xsd:element ref="TTISSUE:CustomerRescission" />
+          <xsd:element ref="TTISSUE:D2d997" />
+          <xsd:element ref="TTISSUE:IaGg" />
+          <xsd:element ref="TTISSUE:IaGl" />
+          <xsd:element ref="TTISSUE:MarketRule" />
+          <xsd:element ref="TTISSUE:MissTrxn" />
+          <xsd:element ref="TTISSUE:MoveOutMeterRemoval" />
+          <xsd:element ref="TTISSUE:Other" />
+          <xsd:element ref="TTISSUE:Premise" />
+          <xsd:element ref="TTISSUE:Proj" />
+          <xsd:element ref="TTISSUE:RedirectFees" />
+          <xsd:element ref="TTISSUE:RejectTrxn" />
+          <xsd:element ref="TTISSUE:RepRecord" />
+          <xsd:element ref="TTISSUE:SafetyNet" />
+          <xsd:element ref="TTISSUE:ServiceAddr" />
+          <xsd:element ref="TTISSUE:ServiceOrder" />
+          <xsd:element ref="TTISSUE:Siebel" />
+          <xsd:element ref="TTISSUE:UsageBilling" />
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:complexType name="SubTypeDevCharType">
+        <xsd:choice>
+          <xsd:element ref="TTISSUE:Loss" />
+          <xsd:element ref="TTISSUE:Profile" />
+          <xsd:element ref="TTISSUE:Region" />
+          <xsd:element ref="TTISSUE:Station" />
+          <xsd:element ref="TTISSUE:Zip" />
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:complexType name="SubTypeDevExistType">
+        <xsd:choice>
+          <xsd:element ref="TTISSUE:ExistERCOTNotMP" />
+          <xsd:element ref="TTISSUE:ExistERCOTStartTime" />
+          <xsd:element ref="TTISSUE:ExistInactiveRecordDate" />
+          <xsd:element ref="TTISSUE:ExistMPNotERCOT" />
+          <xsd:element ref="TTISSUE:ExistStatus" />
+          <xsd:element ref="TTISSUE:ExistUnretireESIID" />
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:complexType name="SubTypeDevIDRType">
+        <xsd:choice>
+          <xsd:element ref="TTISSUE:IDRUsageDate" />
+          <xsd:element ref="TTISSUE:IDRUsageErcotNotMP" />
+          <xsd:element ref="TTISSUE:IDRUsageMPNotErcot" />
+          <xsd:element ref="TTISSUE:IDRUsagekWh" />
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:complexType name="SubTypeDevLSEType">
+        <xsd:choice>
+          <xsd:element ref="TTISSUE:LSEPresentBothEndDateNoMatch" />
+          <xsd:element ref="TTISSUE:LSEPresentBothStartAndEndDateNoMatch" />
+          <xsd:element ref="TTISSUE:LSEPresentBothStartDateNoMatch" />
+          <xsd:element ref="TTISSUE:LSEPresentErcotNotMP" />
+          <xsd:element ref="TTISSUE:LSEPresentMPNotErcotActive" />
+          <xsd:element ref="TTISSUE:LSEPresentMPNotErcotDeEnergized" />
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:complexType name="SubTypeNonIDRType">
+        <xsd:choice>
+          <xsd:element ref="TTISSUE:NonIDRUsageBothDate" />
+          <xsd:element ref="TTISSUE:NonIDRUsageErcotNotMP" />
+          <xsd:element ref="TTISSUE:NonIDRUsageMPNotErcotTOU" />
+          <xsd:element ref="TTISSUE:NonIDRUsagekWh" />
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:complexType name="SubTypeUpdateD2DType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="TTISSUE:Assignee" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ProposedRegainDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingBGN02" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TransactionDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:UnexecutableReason" />
+          <xsd:element minOccurs="0" ref="TTISSUE:RegainingTrxnSubmitDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TDSPData" />
+          <xsd:element minOccurs="0" ref="TTISSUE:SecondaryAssignee" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SwitchHoldRemovalRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:TDSPInvolved" />
+          <xsd:element minOccurs="0" ref="TTISSUE:UnexecutableReason" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SwitchHoldRemovalType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:TDSPInvolved" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element ref="TTISSUE:CommentsText" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="URLAttachmentType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:UserName" />
+          <xsd:element ref="TTISSUE:DateTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:URLTitle" />
+          <xsd:element ref="TTISSUE:URLAddress" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UpdateDevLSEType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="TTISSUE:FinalAgreementStart" />
+          <xsd:element minOccurs="0" ref="TTISSUE:FinalAgreementStop" />
+          <xsd:element minOccurs="0" ref="TTISSUE:UsageMatchesDateReq" />
+          <xsd:element minOccurs="0" ref="TTISSUE:UsageLoadedDateReq" />
+          <xsd:element minOccurs="0" ref="TTISSUE:AnotherCRInvolved" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewStopTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:NewStartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:UsageForTimePeriod" />
+          <xsd:element minOccurs="0" maxOccurs="3" ref="TTISSUE:SHwDfEPs" />
+          <xsd:element minOccurs="0" ref="TTISSUE:AdditionalServiceHistory" />
+          <xsd:element minOccurs="0" ref="TTISSUE:AnalysisInfo" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UpdateIssueType">
+        <xsd:choice>
+          <xsd:element ref="TTISSUE:IssueUpdateD2D" />
+          <xsd:element ref="TTISSUE:IssueUpdateDevLSE" />
+        </xsd:choice>
+      </xsd:complexType>
+      <xsd:complexType name="UpdateRequestIssueType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" ref="TTISSUE:UpdateIssue" />
+          <xsd:element ref="TTISSUE:Transition" />
+          <xsd:element ref="TTISSUE:AlternateUserID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+        </xsd:sequence>
+        <xsd:attribute name="app" type="xsd:NCName" />
+      </xsd:complexType>
+      <xsd:complexType name="UsageBillingRespType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnType" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:DisputeMissing" />
+          <xsd:element minOccurs="0" ref="TTISSUE:IDRNonIDR" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UsageBillingType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:Assignee" />
+          <xsd:element ref="TTISSUE:EsiID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:OrigTrxnID" />
+          <xsd:element ref="TTISSUE:TrxnUsageBillType" />
+          <xsd:element ref="TTISSUE:TrxnDate" />
+          <xsd:element minOccurs="0" ref="TTISSUE:TrxnID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:DisputeMissing" />
+          <xsd:element minOccurs="0" ref="TTISSUE:IDRNonIDR" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CommentsText" />
+          <xsd:element ref="TTISSUE:StartTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:StopTime" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateTDSP" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateESIID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:CheckDuplicateGlobalID" />
+          <xsd:element minOccurs="0" ref="TTISSUE:ValidateGlobalID" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ZipType">
+        <xsd:sequence>
+          <xsd:element ref="TTISSUE:ZipCode" />
+          <xsd:element ref="TTISSUE:NewZipCode" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="channelDef">
+        <xsd:restriction base="xsd:integer">
+          <xsd:maxInclusive value="99999" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="dunsDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="13" />
+          <xsd:minLength value="9" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="esiidDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="36" />
+          <xsd:minLength value="8" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="exceptionTypeDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="5" />
+          <xsd:minLength value="5" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="gainingLosingDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Gaining" />
+          <xsd:enumeration value="Losing" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="generalMsgDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:minLength value="1" />
+          <xsd:maxLength value="4000" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="gsNumDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="9" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="invalidIAGReasonDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Wrong or Invalid Tran ID" />
+          <xsd:enumeration value="Losing CR logged issue as Gaining CR" />
+          <xsd:enumeration value="Gaining CR logged issue as Losing CR" />
+          <xsd:enumeration value="ESIID was De-energized prior to completion of MVI" />
+          <xsd:enumeration value="The Losing and Gaining CRs are the same" />
+          <xsd:enumeration value="Losing CR has left the Market" />
+          <xsd:enumeration value="Gaining CR has left the Market" />
+          <xsd:enumeration value="Other" />
+          <xsd:enumeration value="Order Cancelled - No IAG" />
+          <xsd:enumeration value="3rd party CR involved" />
+          <xsd:enumeration value="Invalid ESIID" />
+          <xsd:enumeration value="Invalid Order Type" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="isaNumDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="9" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="issueDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="D2D" />
+          <xsd:enumeration value="DEV-Char" />
+          <xsd:enumeration value="DEV-Existence" />
+          <xsd:enumeration value="DEV-IDR Usage" />
+          <xsd:enumeration value="DEV-LSE" />
+          <xsd:enumeration value="DEV-Non-IDR Usage" />
+          <xsd:enumeration value="ERCOT Initiated" />
+          <xsd:enumeration value="LPA" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="issueSubTypeDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="997 Issues" />
+          <xsd:enumeration value="AMS LSE Interval Dispute" />
+          <xsd:enumeration value="AMS LSE Interval Missing" />
+          <xsd:enumeration value="Cancel with Approval - CR" />
+          <xsd:enumeration value="Cancel with Approval - TDSP" />
+          <xsd:enumeration value="Cancel without Approval" />
+          <xsd:enumeration value="Customer Rescission" />
+          <xsd:enumeration value="ERCOT Initiated" />
+          <xsd:enumeration value="ESI ID present in ERCOT but has start date issues" />
+          <xsd:enumeration value="ESI ID present in ERCOT system but not in MP system" />
+          <xsd:enumeration value="ESI ID present in MP system but not in ERCOT system" />
+          <xsd:enumeration value="IDR Usage present in ERCOT system but not in MP system" />
+          <xsd:enumeration value="IDR Usage present in MP system but not in ERCOT system" />
+          <xsd:enumeration value="IDR Usage present in both systems but has date issues" />
+          <xsd:enumeration value="IDR Usage present in both systems but has kWh issues" />
+          <xsd:enumeration value="Inactive Record has date issues" />
+          <xsd:enumeration value="Inadvertent Switch" />
+          <xsd:enumeration value="Inadvertent Gaining" />
+          <xsd:enumeration value="Inadvertent Losing" />
+          <xsd:enumeration value="LPA" />
+          <xsd:enumeration value="LSE date change: Start and Stop - CR" />
+          <xsd:enumeration value="LSE date change: Start and Stop - TDSP" />
+          <xsd:enumeration value="LSE date change: StartTime - CR" />
+          <xsd:enumeration value="LSE date change: StartTime - TDSP" />
+          <xsd:enumeration value="LSE date change: StopTime - CR" />
+          <xsd:enumeration value="LSE date change: StopTime - TDSP" />
+          <xsd:enumeration value="LSE in ERCOT system not MP - CR" />
+          <xsd:enumeration value="LSE in ERCOT system not MP - TDSP" />
+          <xsd:enumeration value="LSE in MP sys not ERCOT: active - CR" />
+          <xsd:enumeration value="LSE in MP sys not ERCOT: active - TDSP" />
+          <xsd:enumeration value="LSE in MP sys not ERCOT: inactiv - CR" />
+          <xsd:enumeration value="LSE in MP sys not ERCOT: inactiv - TDSP" />
+          <xsd:enumeration value="LSE in MP sys not ERCOT: de-engz - CR" />
+          <xsd:enumeration value="LSE in MP sys not ERCOT: de-engz - TDSP" />
+          <xsd:enumeration value="Loss Code Assignment" />
+          <xsd:enumeration value="Missing TXNS" />
+          <xsd:enumeration value="Market Rule" />
+          <xsd:enumeration value="Non-IDR Usage present in ERCOT system but not in MP system" />
+          <xsd:enumeration value="Non-IDR Usage present in MP system but not in ERCOT system" />
+          <xsd:enumeration value="Non-IDR Usage present in both systems but has date issues" />
+          <xsd:enumeration value="Non-IDR Usage present in both systems has kWh/kW total issues" />
+          <xsd:enumeration value="Other" />
+          <xsd:enumeration value="Profile Code Assignment" />
+          <xsd:enumeration value="Projects" />
+          <xsd:enumeration value="Redirect Fees" />
+          <xsd:enumeration value="Region Code Assignment" />
+          <xsd:enumeration value="Reject TXNS" />
+          <xsd:enumeration value="Rep of Record" />
+          <xsd:enumeration value="Siebel CHG/Info" />
+          <xsd:enumeration value="Station Code Assignment" />
+          <xsd:enumeration value="Status Assignment" />
+          <xsd:enumeration value="Switch Hold Removal" />
+          <xsd:enumeration value="Un-Retire ESI ID" />
+          <xsd:enumeration value="Usage/Billing Issues" />
+          <xsd:enumeration value="ZIP Assignment" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="loadProfileCategoryDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="LPA - Meter Type" />
+          <xsd:enumeration value="LPA - Premise Type" />
+          <xsd:enumeration value="LPA - Profile Type" />
+          <xsd:enumeration value="LPA - Substation" />
+          <xsd:enumeration value="LPA - Weather Sensitivity" />
+          <xsd:enumeration value="LPA - Weather Zone" />
+          <xsd:enumeration value="LPA - Zip Code" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="lossDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="meterTypeDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="2" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="nameDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="origTrxnDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="30" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="originDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="premiseDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Residential" />
+          <xsd:enumeration value="Small Non-Residential" />
+          <xsd:enumeration value="Large Non-Residential" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="priorityDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="No" />
+          <xsd:enumeration value="Yes" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="profileDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="regionDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="rejectCdDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="008" />
+          <xsd:enumeration value="017" />
+          <xsd:enumeration value="A13" />
+          <xsd:enumeration value="A76" />
+          <xsd:enumeration value="A78" />
+          <xsd:enumeration value="A79" />
+          <xsd:enumeration value="A83" />
+          <xsd:enumeration value="A84" />
+          <xsd:enumeration value="ABN" />
+          <xsd:enumeration value="ABO" />
+          <xsd:enumeration value="ACI" />
+          <xsd:enumeration value="ACR" />
+          <xsd:enumeration value="ANK" />
+          <xsd:enumeration value="ANM" />
+          <xsd:enumeration value="API" />
+          <xsd:enumeration value="ASP" />
+          <xsd:enumeration value="B30" />
+          <xsd:enumeration value="B33" />
+          <xsd:enumeration value="B34" />
+          <xsd:enumeration value="BIM" />
+          <xsd:enumeration value="CAO" />
+          <xsd:enumeration value="CMO" />
+          <xsd:enumeration value="CRI" />
+          <xsd:enumeration value="CW1" />
+          <xsd:enumeration value="CW2" />
+          <xsd:enumeration value="CW5" />
+          <xsd:enumeration value="D30" />
+          <xsd:enumeration value="D76" />
+          <xsd:enumeration value="DCR" />
+          <xsd:enumeration value="DDM" />
+          <xsd:enumeration value="DIP" />
+          <xsd:enumeration value="DIV" />
+          <xsd:enumeration value="DNM" />
+          <xsd:enumeration value="DOT" />
+          <xsd:enumeration value="DUP" />
+          <xsd:enumeration value="EAS" />
+          <xsd:enumeration value="FME" />
+          <xsd:enumeration value="FRB" />
+          <xsd:enumeration value="FRC" />
+          <xsd:enumeration value="FRG" />
+          <xsd:enumeration value="I76" />
+          <xsd:enumeration value="IBO" />
+          <xsd:enumeration value="ICD" />
+          <xsd:enumeration value="ICL" />
+          <xsd:enumeration value="IMI" />
+          <xsd:enumeration value="IMN" />
+          <xsd:enumeration value="INF" />
+          <xsd:enumeration value="INT" />
+          <xsd:enumeration value="LPI" />
+          <xsd:enumeration value="MAR" />
+          <xsd:enumeration value="MBW" />
+          <xsd:enumeration value="MQM" />
+          <xsd:enumeration value="MRI" />
+          <xsd:enumeration value="MTI" />
+          <xsd:enumeration value="MVE" />
+          <xsd:enumeration value="NFI" />
+          <xsd:enumeration value="NLP" />
+          <xsd:enumeration value="NOR" />
+          <xsd:enumeration value="PCO" />
+          <xsd:enumeration value="PMC" />
+          <xsd:enumeration value="RDF" />
+          <xsd:enumeration value="RNE" />
+          <xsd:enumeration value="SBD" />
+          <xsd:enumeration value="SCP" />
+          <xsd:enumeration value="SHF" />
+          <xsd:enumeration value="SNP" />
+          <xsd:enumeration value="SSS" />
+          <xsd:enumeration value="SUM" />
+          <xsd:enumeration value="TCC" />
+          <xsd:enumeration value="TDR" />
+          <xsd:enumeration value="TOU" />
+          <xsd:enumeration value="TRC" />
+          <xsd:enumeration value="UNS" />
+          <xsd:enumeration value="WTM" />
+          <xsd:enumeration value="ZIP" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="repCodeDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="5" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="responseStatusDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="SUCCESS" />
+          <xsd:enumeration value="FAIL" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="sourceDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="gui" />
+          <xsd:enumeration value="api" />
+          <xsd:enumeration value="bulk" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="stationDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="statusDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="64" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="streetDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="80" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="trxnMissingTypeDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="814_01" />
+          <xsd:enumeration value="814_02" />
+          <xsd:enumeration value="814_03" />
+          <xsd:enumeration value="814_04" />
+          <xsd:enumeration value="814_05" />
+          <xsd:enumeration value="814_06" />
+          <xsd:enumeration value="814_07" />
+          <xsd:enumeration value="814_08" />
+          <xsd:enumeration value="814_09" />
+          <xsd:enumeration value="814_09-PT" />
+          <xsd:enumeration value="814_10" />
+          <xsd:enumeration value="814_11" />
+          <xsd:enumeration value="814_12" />
+          <xsd:enumeration value="814_13" />
+          <xsd:enumeration value="814_14" />
+          <xsd:enumeration value="814_15" />
+          <xsd:enumeration value="814_16" />
+          <xsd:enumeration value="814_17" />
+          <xsd:enumeration value="814_18" />
+          <xsd:enumeration value="814_19" />
+          <xsd:enumeration value="814_20" />
+          <xsd:enumeration value="814_21" />
+          <xsd:enumeration value="814_22" />
+          <xsd:enumeration value="814_23" />
+          <xsd:enumeration value="814_24" />
+          <xsd:enumeration value="814_25" />
+          <xsd:enumeration value="814_26" />
+          <xsd:enumeration value="814_27" />
+          <xsd:enumeration value="814_28" />
+          <xsd:enumeration value="814_29" />
+          <xsd:enumeration value="814_29 -09" />
+          <xsd:enumeration value="867_04" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="trxnRejectTypeDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="814_02" />
+          <xsd:enumeration value="814_04" />
+          <xsd:enumeration value="814_05" />
+          <xsd:enumeration value="814_07" />
+          <xsd:enumeration value="814_09" />
+          <xsd:enumeration value="814_11" />
+          <xsd:enumeration value="814_13" />
+          <xsd:enumeration value="814_15" />
+          <xsd:enumeration value="814_17" />
+          <xsd:enumeration value="814_19" />
+          <xsd:enumeration value="814_21" />
+          <xsd:enumeration value="814_23" />
+          <xsd:enumeration value="814_25" />
+          <xsd:enumeration value="814_27" />
+          <xsd:enumeration value="814_29" />
+          <xsd:enumeration value="824" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="trxnServOrderTypeDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="650_01" />
+          <xsd:enumeration value="650_02" />
+          <xsd:enumeration value="650_04" />
+          <xsd:enumeration value="650_05" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="trxnTypeDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="650_01" />
+          <xsd:enumeration value="650_02" />
+          <xsd:enumeration value="650_04" />
+          <xsd:enumeration value="650_05" />
+          <xsd:enumeration value="810" />
+          <xsd:enumeration value="810_02" />
+          <xsd:enumeration value="810_03" />
+          <xsd:enumeration value="814_01" />
+          <xsd:enumeration value="814_02" />
+          <xsd:enumeration value="814_03" />
+          <xsd:enumeration value="814_04" />
+          <xsd:enumeration value="814_05" />
+          <xsd:enumeration value="814_06" />
+          <xsd:enumeration value="814_07" />
+          <xsd:enumeration value="814_08" />
+          <xsd:enumeration value="814_09" />
+          <xsd:enumeration value="814_09-PT" />
+          <xsd:enumeration value="814_10" />
+          <xsd:enumeration value="814_11" />
+          <xsd:enumeration value="814_12" />
+          <xsd:enumeration value="814_13" />
+          <xsd:enumeration value="814_14" />
+          <xsd:enumeration value="814_15" />
+          <xsd:enumeration value="814_16" />
+          <xsd:enumeration value="814_17" />
+          <xsd:enumeration value="814_18" />
+          <xsd:enumeration value="814_19" />
+          <xsd:enumeration value="814_20" />
+          <xsd:enumeration value="814_21" />
+          <xsd:enumeration value="814_22" />
+          <xsd:enumeration value="814_23" />
+          <xsd:enumeration value="814_24" />
+          <xsd:enumeration value="814_25" />
+          <xsd:enumeration value="814_26" />
+          <xsd:enumeration value="814_27" />
+          <xsd:enumeration value="814_28" />
+          <xsd:enumeration value="814_29" />
+          <xsd:enumeration value="814_29 -09" />
+          <xsd:enumeration value="820" />
+          <xsd:enumeration value="824" />
+          <xsd:enumeration value="867_01" />
+          <xsd:enumeration value="867_02" />
+          <xsd:enumeration value="867_03" />
+          <xsd:enumeration value="867_03 Monthly 00" />
+          <xsd:enumeration value="867_03 Monthly 01" />
+          <xsd:enumeration value="867_03 Monthly 05" />
+          <xsd:enumeration value="810_02 Monthly 00" />
+          <xsd:enumeration value="810_02 Monthly 01" />
+          <xsd:enumeration value="810_02 Monthly 05" />
+          <xsd:enumeration value="867_03F" />
+          <xsd:enumeration value="867_04" />
+          <xsd:enumeration value="867_05" />
+          <xsd:enumeration value="All 650s" />
+          <xsd:enumeration value="All 814s" />
+          <xsd:enumeration value="All 867s" />
+          <xsd:enumeration value="All trans" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="trxnUsageBillTypeDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="810_02 Monthly 00" />
+          <xsd:enumeration value="810_02 Monthly 01" />
+          <xsd:enumeration value="810_02 Monthly 05" />
+          <xsd:enumeration value="810_03" />
+          <xsd:enumeration value="867_03 Monthly 00" />
+          <xsd:enumeration value="867_03 Monthly 01" />
+          <xsd:enumeration value="867_03 Monthly 05" />
+          <xsd:enumeration value="867_03F" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="uidChannelCutDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="19" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="uidESIIDDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="19" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="unexecutableReasonDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="3rd party CR has regained/transaction completed" />
+          <xsd:enumeration value="Authorized Enrollment Confirmed" />
+          <xsd:enumeration value="Duplicate Issue" />
+          <xsd:enumeration value="Other" />
+          <xsd:enumeration value="Documentation Invalid/Incomplete" />
+          <xsd:enumeration value="No Switch Hold Pending on this ESIID" />
+          <xsd:enumeration value="Customer Associated with Current Occupant" />
+          <xsd:enumeration value="Issue Should not be Submitted by REP of Record" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="usageDef">
+        <xsd:restriction base="xsd:decimal" />
+      </xsd:simpleType>
+      <xsd:simpleType name="usageForTimePeriodDef">
+        <xsd:restriction base="xsd:decimal" />
+      </xsd:simpleType>
+      <xsd:simpleType name="weatherZoneDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Coast" />
+          <xsd:enumeration value="East" />
+          <xsd:enumeration value="FWest" />
+          <xsd:enumeration value="NCent" />
+          <xsd:enumeration value="North" />
+          <xsd:enumeration value="Scent" />
+          <xsd:enumeration value="South" />
+          <xsd:enumeration value="West" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="zipCodeDef">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="5" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="AMSLSEIntervalDispute" type="TTISSUE:AMSLSEIntervalDisputeType" />
+      <xsd:element name="AMSLSEIntervalDisputeResp" type="TTISSUE:AMSLSEIntervalDisputeRespType" />
+      <xsd:element name="AMSLSEIntervalMissing" type="TTISSUE:AMSLSEIntervalMissingType" />
+      <xsd:element name="AMSLSEIntervalMissingResp" type="TTISSUE:AMSLSEIntervalMissingRespType" />
+      <xsd:element name="AddTime" type="xsd:dateTime" />
+      <xsd:element name="AdditionalServiceHistory" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="AlternateUserID" type="TTISSUE:IDDef" />
+      <xsd:element name="AnalysisInfo" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="AnotherCRInvolved" type="xsd:boolean" />
+      <xsd:element name="Assignee" type="TTISSUE:dunsDef" />
+      <xsd:element name="AttachmentExists" type="xsd:boolean" />
+      <xsd:element name="BusinessProcess">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="30" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="CancelWA" type="TTISSUE:CancelWAType" />
+      <xsd:element name="CancelWAResp" type="TTISSUE:CancelWARespType" />
+      <xsd:element name="CancelWoA" type="TTISSUE:CancelWoAType" />
+      <xsd:element name="CancelWoAResp" type="TTISSUE:CancelWoARespType" />
+      <xsd:element name="Channel" type="TTISSUE:channelDef" />
+      <xsd:element default="false" name="CheckDuplicateESIID" type="xsd:boolean" />
+      <xsd:element default="false" name="CheckDuplicateGlobalID" type="xsd:boolean" />
+      <xsd:element name="City">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="80" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="CloseDateTime" type="xsd:dateTime" />
+      <xsd:element name="Comments" type="TTISSUE:CommentsType" />
+      <xsd:element name="CommentsText" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="CustomerRescission" type="TTISSUE:CustomerRescissionType" />
+      <xsd:element name="CustomerRescissionResp" type="TTISSUE:CustomerRescissionRespType" />
+      <xsd:element name="D2d997" type="TTISSUE:D2d997Type" />
+      <xsd:element name="D2d997Resp" type="TTISSUE:D2d997RespType" />
+      <xsd:element name="DateRangeName" type="TTISSUE:DateRangeNameType" />
+      <xsd:element name="DateTime" type="xsd:dateTime" />
+      <xsd:element name="Description" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="DisputeMissing" type="TTISSUE:DisputeMissingDef" />
+      <xsd:element name="Duns" type="TTISSUE:dunsDef" />
+      <xsd:element name="ERCOTCategory" type="TTISSUE:ERCOTCategoryDef" />
+      <xsd:element name="Error" type="TTISSUE:ErrorType" />
+      <xsd:element name="ErrorCode">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="10" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="ErrorDateTime" type="xsd:dateTime" />
+      <xsd:element name="ErrorDescription" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="EsiID" type="TTISSUE:esiidDef" />
+      <xsd:element name="ExceptionType" type="TTISSUE:exceptionTypeDef" />
+      <xsd:element name="ExistERCOTNotMP" type="TTISSUE:ExistERCOTNotMPType" />
+      <xsd:element name="ExistERCOTStartTime" type="TTISSUE:ExistERCOTStartTimeType" />
+      <xsd:element name="ExistInactiveRecordDate" type="TTISSUE:ExistInactiveRecordDateType" />
+      <xsd:element name="ExistMPNotERCOT" type="TTISSUE:ExistMPNotERCOTType" />
+      <xsd:element name="ExistStatus" type="TTISSUE:ExistStatusType" />
+      <xsd:element name="ExistUnretireESIID" type="TTISSUE:ExistUnretireESIIDType" />
+      <xsd:element name="FileAttachmentNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="16" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="FileAttachments" type="TTISSUE:FileAttachmentType" />
+      <xsd:element name="FileName" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="FileTitle">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="255" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="FinalAgreementStart" type="xsd:dateTime" />
+      <xsd:element name="FinalAgreementStop" type="xsd:dateTime" />
+      <xsd:element name="FirstTouched" type="xsd:dateTime" />
+      <xsd:element name="FromDateTime" type="xsd:dateTime" />
+      <xsd:element name="GSNum" type="TTISSUE:gsNumDef" />
+      <xsd:element name="GainingCRROR" type="xsd:boolean" />
+      <xsd:element name="GainingCRStartDate" type="xsd:dateTime" />
+      <xsd:element name="GainingLosing" type="TTISSUE:gainingLosingDef" />
+      <xsd:element name="GlobalID">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="128" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="GroupName">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="80" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="GroupNumber" type="xsd:int" />
+      <xsd:element name="HighkW" type="xsd:decimal" />
+      <xsd:element name="IDRNonIDR" type="TTISSUE:IDRNonIDRDef" />
+      <xsd:element name="IDRUsageDate" type="TTISSUE:IDRUsageDateType" />
+      <xsd:element name="IDRUsageErcotNotMP" type="TTISSUE:IDRUsageType" />
+      <xsd:element name="IDRUsageMPNotErcot" type="TTISSUE:IDRUsageMPNotErcotType" />
+      <xsd:element name="IDRUsagekWh" type="TTISSUE:IDRUsagekWhType" />
+      <xsd:element name="ISANum" type="TTISSUE:isaNumDef" />
+      <xsd:element name="IaGg" type="TTISSUE:IaGgType" />
+      <xsd:element name="IaGgResponse" type="TTISSUE:IaGgResponseType" />
+      <xsd:element name="IaGl" type="TTISSUE:IaGlType" />
+      <xsd:element name="IaGlResponse" type="TTISSUE:IaGlResponseType" />
+      <xsd:element name="IaS" type="TTISSUE:IaSType" />
+      <xsd:element name="IaSResp" type="TTISSUE:IaSRespType" />
+      <xsd:element name="IaSResponse" type="TTISSUE:IaSResponseType" />
+      <xsd:element name="InvalidIAGReason" type="TTISSUE:invalidIAGReasonDef" />
+      <xsd:element name="IssueAvailableDate" type="xsd:dateTime" />
+      <xsd:element name="IssueD2D" type="TTISSUE:IssueD2DType" />
+      <xsd:element name="IssueD2DResponse" type="TTISSUE:IssueD2DResponseType" />
+      <xsd:element name="IssueDevChar" type="TTISSUE:IssueDevCharType" />
+      <xsd:element name="IssueDevCharResponse">
+        <xsd:complexType>
+          <xsd:complexContent mixed="false">
+            <xsd:extension base="TTISSUE:IssueDevCharRespType">
+              <xsd:sequence>
+                <xsd:element ref="TTISSUE:ReqResponse" />
+                <xsd:element minOccurs="0" ref="TTISSUE:PremiseType" />
+              </xsd:sequence>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IssueDevExist" type="TTISSUE:IssueDevExistType" />
+      <xsd:element name="IssueDevExistResponse">
+        <xsd:complexType>
+          <xsd:complexContent mixed="false">
+            <xsd:extension base="TTISSUE:IssueDevExistRespType">
+              <xsd:sequence>
+                <xsd:element ref="TTISSUE:AddTime" />
+                <xsd:element ref="TTISSUE:ReqResponse" />
+                <xsd:element minOccurs="0" ref="TTISSUE:PremiseType" />
+              </xsd:sequence>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IssueDevIDR" type="TTISSUE:IssueDevIDRType" />
+      <xsd:element name="IssueDevIDRResponse">
+        <xsd:complexType>
+          <xsd:complexContent mixed="false">
+            <xsd:extension base="TTISSUE:IssueDevIDRRespType">
+              <xsd:sequence>
+                <xsd:element ref="TTISSUE:ReqResponse" />
+                <xsd:element minOccurs="0" ref="TTISSUE:PremiseType" />
+              </xsd:sequence>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IssueDevLSE" type="TTISSUE:IssueDevLSEType" />
+      <xsd:element name="IssueDevLSEResponse" type="TTISSUE:DevLSEResponseType" />
+      <xsd:element name="IssueDevNIDR" type="TTISSUE:IssueDevNIDRType" />
+      <xsd:element name="IssueDevNIDRResponse">
+        <xsd:complexType>
+          <xsd:complexContent mixed="false">
+            <xsd:extension base="TTISSUE:IssueDevNIDRRespType">
+              <xsd:sequence>
+                <xsd:element ref="TTISSUE:ReqResponse" />
+                <xsd:element minOccurs="0" ref="TTISSUE:PremiseType" />
+              </xsd:sequence>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IssueERCOTInitiated" type="TTISSUE:ERCOTInitiatedType" />
+      <xsd:element name="IssueERCOTInitiatedResponse" type="TTISSUE:ERCOTInitiatedTypeResponse" />
+      <xsd:element name="IssueLoadProfile" type="TTISSUE:LoadProfileType" />
+      <xsd:element name="IssueLoadProfileResponse">
+        <xsd:complexType>
+          <xsd:complexContent mixed="false">
+            <xsd:extension base="TTISSUE:LoadProfileRespType" />
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IssueNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="16" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="IssueQueryDetailsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="TTISSUE:IssueNumber" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IssueQueryDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" ref="TTISSUE:IssueResponse" />
+            <xsd:element ref="TTISSUE:Response" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IssueQueryRequest" type="TTISSUE:IssueQueryRequest" />
+      <xsd:element name="IssueQueryResponse" type="TTISSUE:IssueQueryResponse" />
+      <xsd:element name="IssueResponse" type="TTISSUE:QueryResponseIssueType" />
+      <xsd:element name="IssueState">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Active" />
+            <xsd:enumeration value="Agreement Reached (PC)" />
+            <xsd:enumeration value="Auto Complete" />
+            <xsd:enumeration value="Cancelled (PC)" />
+            <xsd:enumeration value="Closed" />
+            <xsd:enumeration value="Closed - Inactive" />
+            <xsd:enumeration value="Closed By ERCOT" />
+            <xsd:enumeration value="Closed by Submitter" />
+            <xsd:enumeration value="Complete" />
+            <xsd:enumeration value="Complete (Failed Analysis)" />
+            <xsd:enumeration value="Failed Analysis" />
+            <xsd:enumeration value="Failed Analysis (PC)" />
+            <xsd:enumeration value="In Progress" />
+            <xsd:enumeration value="In Progress (Assignee)" />
+            <xsd:enumeration value="In Progress (ERCOT Resolve)" />
+            <xsd:enumeration value="In Progress (ERCOT)" />
+            <xsd:enumeration value="In Progress (Gaining CR)" />
+            <xsd:enumeration value="In Progress (Losing CR)" />
+            <xsd:enumeration value="In Progress (LPA 1:1)" />
+            <xsd:enumeration value="In Progress (Pending Approval)" />
+            <xsd:enumeration value="In Progress (Re-Submit Regaining)" />
+            <xsd:enumeration value="In Progress (Secondary)" />
+            <xsd:enumeration value="In Progress (Submit Regaining)" />
+            <xsd:enumeration value="In Progress (TDSP)" />
+            <xsd:enumeration value="In Progress (TDSP) - Final Review" />
+            <xsd:enumeration value="Invalid IAG" />
+            <xsd:enumeration value="New" />
+            <xsd:enumeration value="New (Assignee)" />
+            <xsd:enumeration value="New (ERCOT)" />
+            <xsd:enumeration value="New (ERCOT Resolve)" />
+            <xsd:enumeration value="New (Gaining CR)" />
+            <xsd:enumeration value="New (Losing CR)" />
+            <xsd:enumeration value="New (Losing CR Re-Submit)" />
+            <xsd:enumeration value="New (Losing CR Submit)" />
+            <xsd:enumeration value="New (LPA 1:1)" />
+            <xsd:enumeration value="New (Pending Approval)" />
+            <xsd:enumeration value="New (Secondary)" />
+            <xsd:enumeration value="New (TDSP)" />
+            <xsd:enumeration value="New (TDSP) - Final Review" />
+            <xsd:enumeration value="New - All" />
+            <xsd:enumeration value="No Agreement Reached (PC)" />
+            <xsd:enumeration value="Pending Approval (LPA 1:1)" />
+            <xsd:enumeration value="Pending Complete" />
+            <xsd:enumeration value="Pending Issue" />
+            <xsd:enumeration value="Regaining Transaction Re_Submitted (PC)" />
+            <xsd:enumeration value="Regaining Transaction Submitted (PC)" />
+            <xsd:enumeration value="Return to Losing CR (PC)" />
+            <xsd:enumeration value="Unable To Cancel (PC)" />
+            <xsd:enumeration value="Unexecutable (PC)" />
+            <xsd:enumeration value="Vote" />
+            <xsd:enumeration value="Withdrawn" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element default="New" name="IssueStatus" type="TTISSUE:IssueStatusType" />
+      <xsd:element name="IssueSubType" type="TTISSUE:issueSubTypeDef" />
+      <xsd:element name="IssueSubmitRequest" type="TTISSUE:IssueSubmitRequest" />
+      <xsd:element name="IssueSubmitResponse" type="TTISSUE:IssueSubmitResponse" />
+      <xsd:element name="IssueType" type="TTISSUE:issueDef" />
+      <xsd:element name="IssueUpdateD2D" type="TTISSUE:IssueUpdateD2DType" />
+      <xsd:element name="IssueUpdateDevLSE" type="TTISSUE:UpdateDevLSEType" />
+      <xsd:element name="IssueUpdateRequest" type="TTISSUE:IssueUpdateRequest" />
+      <xsd:element name="IssueUpdateResponse" type="TTISSUE:IssueUpdateResponse" />
+      <xsd:element name="LSEDUNS" type="TTISSUE:dunsDef" />
+      <xsd:element name="LSEPresentBothEndDateNoMatch" type="TTISSUE:LSEPresentBothEndDateNoMatchType" />
+      <xsd:element name="LSEPresentBothStartAndEndDateNoMatch" type="TTISSUE:LSEPresentBothStartAndEndDateNoMatchType" />
+      <xsd:element name="LSEPresentBothStartDateNoMatch" type="TTISSUE:LSEPresentBothStartDateNoMatchType" />
+      <xsd:element name="LSEPresentErcotNotMP" type="TTISSUE:LSEPresentErcotNotMPType" />
+      <xsd:element name="LSEPresentMPNotErcotActive" type="TTISSUE:LSEPresentMPNotErcotActiveType" />
+      <xsd:element name="LSEPresentMPNotErcotDeEnergized" type="TTISSUE:LSEPresentMPNotErcotDeEnergizedType" />
+      <xsd:element name="LastModified" type="xsd:dateTime" />
+      <xsd:element name="LastModifier" type="TTISSUE:IDDef" />
+      <xsd:element name="LastStateChangeDate" type="xsd:dateTime" />
+      <xsd:element name="LastStateChanger" type="TTISSUE:IDDef" />
+      <xsd:element name="LinkedIssueNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="16" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="LinkedIssues" type="TTISSUE:LinkedIssueType" />
+      <xsd:element name="LoadProfileCategory" type="TTISSUE:loadProfileCategoryDef" />
+      <xsd:element name="Loss" type="TTISSUE:LossType" />
+      <xsd:element name="LossCode" type="TTISSUE:lossDef" />
+      <xsd:element name="MPGroupName" type="TTISSUE:MPGroupNameType" />
+      <xsd:element name="MPGroupNumber" type="TTISSUE:MPGroupNumberType" />
+      <xsd:element name="MPInvolved" type="TTISSUE:MPType" />
+      <xsd:element name="MPOwner">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element ref="TTISSUE:UserID" />
+          </xsd:sequence>
+          <xsd:attribute name="role" type="TTISSUE:RoleType" use="required" />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="MPVote" type="TTISSUE:MPVoteType" />
+      <xsd:element name="MarketRule" type="TTISSUE:MarketRuleType" />
+      <xsd:element name="MarketRuleRef">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="30" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="MarketRuleResp" type="TTISSUE:MarketRuleRespType" />
+      <xsd:element name="MeterRemovalDate" type="xsd:date" />
+      <xsd:element name="MeterType" type="TTISSUE:meterTypeDef" />
+      <xsd:element name="MissTrxn" type="TTISSUE:MissTrxnType" />
+      <xsd:element name="MissTrxnResp" type="TTISSUE:MissTrxnRespType" />
+      <xsd:element name="MoveOutMeterRemoval" type="TTISSUE:MoveOutMeterRemovalType" />
+      <xsd:element name="MoveOutMeterRemovalResp" type="TTISSUE:MoveOutMeterRemovalRespType" />
+      <xsd:element name="NewLossCode" type="TTISSUE:lossDef" />
+      <xsd:element name="NewMDPK" type="TTISSUE:usageDef" />
+      <xsd:element name="NewOFFPK" type="TTISSUE:usageDef" />
+      <xsd:element name="NewONPK" type="TTISSUE:usageDef" />
+      <xsd:element name="NewOwner" type="TTISSUE:IDDef" />
+      <xsd:element name="NewPremiseType" type="TTISSUE:premiseDef" />
+      <xsd:element name="NewProfileCode" type="TTISSUE:profileDef" />
+      <xsd:element name="NewRegionCode" type="TTISSUE:regionDef" />
+      <xsd:element name="NewSPK" type="TTISSUE:usageDef" />
+      <xsd:element name="NewServAddress" type="TTISSUE:AddressType" />
+      <xsd:element name="NewStartTime" type="xsd:dateTime" />
+      <xsd:element name="NewStationCode" type="TTISSUE:stationDef" />
+      <xsd:element name="NewStopTime" type="xsd:dateTime" />
+      <xsd:element name="NewTotal" type="xsd:decimal" />
+      <xsd:element name="NewWeatherZone" type="TTISSUE:weatherZoneDef" />
+      <xsd:element name="NewZipCode" type="TTISSUE:zipCodeDef" />
+      <xsd:element name="NonIDRUsageBothDate" type="TTISSUE:NonIDRUsageBothDateType" />
+      <xsd:element name="NonIDRUsageCRNotErcotNoTOU" type="TTISSUE:NonIDRUsageNotErcotNoTOUType" />
+      <xsd:element name="NonIDRUsageErcotNotMP" type="TTISSUE:NonIDRUsageErcotNotMPType" />
+      <xsd:element name="NonIDRUsageMPNotErcotTOU" type="TTISSUE:NonIDRUsageNotErcotTOUType" />
+      <xsd:element name="NonIDRUsagekWh" type="TTISSUE:NonIDRUsagekWhType" />
+      <xsd:element name="NoteAttachments" type="TTISSUE:NoteAttachmentType" />
+      <xsd:element name="NoteText" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="NoteTitle">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="255" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="OrigReqNewStart" type="xsd:dateTime" />
+      <xsd:element name="OrigReqNewStop" type="xsd:dateTime" />
+      <xsd:element name="OrigReqStart" type="xsd:dateTime" />
+      <xsd:element name="OrigReqStop" type="xsd:dateTime" />
+      <xsd:element name="OrigTrxnID" type="TTISSUE:origTrxnDef" />
+      <xsd:element name="Origin" type="TTISSUE:originDef" />
+      <xsd:element name="Other" type="TTISSUE:OtherType" />
+      <xsd:element name="OtherResp" type="TTISSUE:OtherRespType" />
+      <xsd:element name="PMVIRequestedDate" type="xsd:dateTime" />
+      <xsd:element name="ParentIssueNumber">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="16" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="Premise" type="TTISSUE:PremiseType" />
+      <xsd:element name="PremiseEnergizeDate" type="xsd:date" />
+      <xsd:element name="PremiseResp" type="TTISSUE:PremiseRespType" />
+      <xsd:element name="PremiseType" type="TTISSUE:premiseDef" />
+      <xsd:element name="Priority" type="TTISSUE:priorityDef" />
+      <xsd:element name="PriorityBGN02" type="TTISSUE:origTrxnDef" />
+      <xsd:element name="Profile" type="TTISSUE:ProfileType" />
+      <xsd:element name="ProfileCode" type="TTISSUE:profileDef" />
+      <xsd:element name="ProfileStartTime" type="xsd:dateTime" />
+      <xsd:element name="Proj" type="TTISSUE:ProjType" />
+      <xsd:element name="ProjResp" type="TTISSUE:ProjRespType" />
+      <xsd:element name="ProposedRegainDate" type="xsd:dateTime" />
+      <xsd:element name="Query" type="TTISSUE:QueryType" />
+      <xsd:element name="REPCode" type="TTISSUE:repCodeDef" />
+      <xsd:element name="RORDuns" type="TTISSUE:dunsDef" />
+      <xsd:element name="RORStartTime" type="xsd:dateTime" />
+      <xsd:element name="RORStopTime" type="xsd:dateTime" />
+      <xsd:element name="RedirectFees" type="TTISSUE:RedirectFeesType" />
+      <xsd:element name="RedirectFeesResp" type="TTISSUE:RedirectFeesRespType" />
+      <xsd:element name="RegainDate" type="xsd:dateTime" />
+      <xsd:element name="RegainingBGN02" type="TTISSUE:origTrxnDef" />
+      <xsd:element name="RegainingGlobalID">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="128" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="RegainingTrxnSiebelCheckDate" type="xsd:dateTime" />
+      <xsd:element name="RegainingTrxnSiebelStatus">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="80" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="RegainingTrxnSubmitDate" type="xsd:dateTime" />
+      <xsd:element name="Region" type="TTISSUE:RegionType" />
+      <xsd:element name="RegionCode" type="TTISSUE:regionDef" />
+      <xsd:element name="RejectCode" type="TTISSUE:rejectCdDef" />
+      <xsd:element name="RejectTrxn" type="TTISSUE:RejectTrxnType" />
+      <xsd:element name="RejectTrxnResp" type="TTISSUE:RejectTrxnRespType" />
+      <xsd:element name="RepRecord" type="TTISSUE:RepRecordType" />
+      <xsd:element name="RepRecordResp" type="TTISSUE:RepRecordRespType" />
+      <xsd:element name="ReqResponse" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="RequestedMoveInDate" type="xsd:date" />
+      <xsd:element name="Response" type="TTISSUE:ResponseType" />
+      <xsd:element name="ResponseDateTime" type="xsd:dateTime" />
+      <xsd:element name="ResponseStatus" type="TTISSUE:responseStatusDef" />
+      <xsd:element name="ResponsibleMP" type="TTISSUE:dunsDef" />
+      <xsd:element name="SHwDfEPs" type="TTISSUE:SHwDfEPType" />
+      <xsd:element name="SMRD" type="xsd:dateTime" />
+      <xsd:element name="SafetyNet" type="TTISSUE:SafetyNetType" />
+      <xsd:element name="SafetyNetResp" type="TTISSUE:SafetyNetRespType" />
+      <xsd:element name="SecHikW" type="xsd:decimal" />
+      <xsd:element name="SecondaryAssignee" type="TTISSUE:dunsDef" />
+      <xsd:element name="ServAddress" type="TTISSUE:AddressType" />
+      <xsd:element name="ServHistWithDUNS" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="ServiceAddr" type="TTISSUE:ServiceAddrType" />
+      <xsd:element name="ServiceAddrResp" type="TTISSUE:ServiceAddrRespType" />
+      <xsd:element name="ServiceOrder" type="TTISSUE:ServiceOrderType" />
+      <xsd:element name="ServiceOrderResp" type="TTISSUE:ServiceOrderRespType" />
+      <xsd:element name="Siebel" type="TTISSUE:SiebelType" />
+      <xsd:element name="SiebelCheckDateTime" type="xsd:dateTime" />
+      <xsd:element name="SiebelResp" type="TTISSUE:SiebelRespType" />
+      <xsd:element name="SiebelStatus">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="80" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="SiebelSubStatus">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="80" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="SpreadsheetSubmitDate" type="xsd:date" />
+      <xsd:element name="StartTime" type="xsd:dateTime" />
+      <xsd:element name="State">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="Station" type="TTISSUE:StationType" />
+      <xsd:element name="StationCode" type="TTISSUE:stationDef" />
+      <xsd:element name="Status" type="TTISSUE:statusDef" />
+      <xsd:element name="StopTime" type="xsd:dateTime" />
+      <xsd:element name="Street" type="TTISSUE:streetDef" />
+      <xsd:element name="SubStationPercent" type="xsd:decimal" />
+      <xsd:element name="SubTypeD2D" type="TTISSUE:SubTypeD2DType" />
+      <xsd:element name="SubTypeD2DResponse" type="TTISSUE:SubTypeD2DResponseType" />
+      <xsd:element name="SubTypeDevChar" type="TTISSUE:SubTypeDevCharType" />
+      <xsd:element name="SubTypeDevExist" type="TTISSUE:SubTypeDevExistType" />
+      <xsd:element name="SubTypeDevIDR" type="TTISSUE:SubTypeDevIDRType" />
+      <xsd:element name="SubTypeDevLSE" type="TTISSUE:SubTypeDevLSEType" />
+      <xsd:element name="SubTypeNonIDR" type="TTISSUE:SubTypeNonIDRType" />
+      <xsd:element name="SubTypeUpdateD2D" type="TTISSUE:SubTypeUpdateD2DType" />
+      <xsd:element name="SubmitDateTime" type="xsd:dateTime" />
+      <xsd:element name="SubmitSource" type="TTISSUE:sourceDef" />
+      <xsd:element name="Submitter" type="TTISSUE:IDDef" />
+      <xsd:element name="SwitchHoldRemoval" type="TTISSUE:SwitchHoldRemovalType" />
+      <xsd:element name="SwitchHoldRemovalResp" type="TTISSUE:SwitchHoldRemovalRespType" />
+      <xsd:element name="TDSPData" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="TDSPInvolved" type="TTISSUE:dunsDef" />
+      <xsd:element name="TimeStamp" type="xsd:dateTime" />
+      <xsd:element name="Title">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="80" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="ToDateTime" type="xsd:dateTime" />
+      <xsd:element name="Total" type="xsd:decimal" />
+      <xsd:element name="TransactionDate" type="xsd:dateTime" />
+      <xsd:element name="Transition">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="814_20 Sent/Complete" />
+            <xsd:enumeration value="Accept" />
+            <xsd:enumeration value="Add Comment" />
+            <xsd:enumeration value="Additional Info Required" />
+            <xsd:enumeration value="Agree" />
+            <xsd:enumeration value="Already Cancelled" />
+            <xsd:enumeration value="Assign Owner" />
+            <xsd:enumeration value="Assign To ERCOT" />
+            <xsd:enumeration value="Assign To Group" />
+            <xsd:enumeration value="Assign To Primary" />
+            <xsd:enumeration value="Assign To Secondary" />
+            <xsd:enumeration value="Assign To Submitter" />
+            <xsd:enumeration value="Begin Working" />
+            <xsd:enumeration value="Child Issues Complete (LPA 1:1)" />
+            <xsd:enumeration value="Close" />
+            <xsd:enumeration value="Complete" />
+            <xsd:enumeration value="Create" />
+            <xsd:enumeration value="Disagree" />
+            <xsd:enumeration value="ERCOT Cancel" />
+            <xsd:enumeration value="ERCOT Return" />
+            <xsd:enumeration value="Edit" />
+            <xsd:enumeration value="Invalid IAG" />
+            <xsd:enumeration value="Item Cancelled" />
+            <xsd:enumeration value="Losing CR Re-Submit" />
+            <xsd:enumeration value="Modify/Reassign" />
+            <xsd:enumeration value="No Agreement Reached" />
+            <xsd:enumeration value="No Rep of Record" />
+            <xsd:enumeration value="Passed Analysis" />
+            <xsd:enumeration value="Perform Analysis" />
+            <xsd:enumeration value="Provide Regaining BGN02" />
+            <xsd:enumeration value="Ready To Receive" />
+            <xsd:enumeration value="Re-Assign" />
+            <xsd:enumeration value="Redirect Fees" />
+            <xsd:enumeration value="Request LPA 1:1" />
+            <xsd:enumeration value="Request Updated Proposed Regain Date" />
+            <xsd:enumeration value="Return" />
+            <xsd:enumeration value="Return For Processing" />
+            <xsd:enumeration value="Return To Assignee" />
+            <xsd:enumeration value="Return To ERCOT" />
+            <xsd:enumeration value="Return to Losing CR" />
+            <xsd:enumeration value="Return to Rep of Record" />
+            <xsd:enumeration value="Return To Submitter" />
+            <xsd:enumeration value="Return To Vote" />
+            <xsd:enumeration value="Select IAS Parties" />
+            <xsd:enumeration value="Select IAG Parties" />
+            <xsd:enumeration value="Send To ERCOT" />
+            <xsd:enumeration value="Send To Gaining CR" />
+            <xsd:enumeration value="Send To Losing CR" />
+            <xsd:enumeration value="Send to Rep of Record" />
+            <xsd:enumeration value="Send To Submitting CR" />
+            <xsd:enumeration value="Send To TDSP" />
+            <xsd:enumeration value="Submit" />
+            <xsd:enumeration value="Submit LPA 1:1" />
+            <xsd:enumeration value="Switch Hold Not Removed" />
+            <xsd:enumeration value="Switch Hold Removed" />
+            <xsd:enumeration value="TDSP Cancel" />
+            <xsd:enumeration value="Time Limit Exceeded" />
+            <xsd:enumeration value="Unable To Cancel" />
+            <xsd:enumeration value="Unable To Complete" />
+            <xsd:enumeration value="Unexecutable" />
+            <xsd:enumeration value="Update Approved" />
+            <xsd:enumeration value="Update Regaining Transaction Siebel Status" />
+            <xsd:enumeration value="Update Siebel Status/Substatus" />
+            <xsd:enumeration value="Withdraw" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="TrxnDate" type="xsd:date" />
+      <xsd:element name="TrxnID" type="TTISSUE:origTrxnDef" />
+      <xsd:element name="TrxnMissingType" type="TTISSUE:trxnMissingTypeDef" />
+      <xsd:element name="TrxnRejectType" type="TTISSUE:trxnRejectTypeDef" />
+      <xsd:element name="TrxnServOrderType" type="TTISSUE:trxnServOrderTypeDef" />
+      <xsd:element name="TrxnType" type="TTISSUE:trxnTypeDef" />
+      <xsd:element name="TrxnUsageBillType" type="TTISSUE:trxnUsageBillTypeDef" />
+      <xsd:element name="UIDAMSInterval" type="TTISSUE:uidESIIDDef" />
+      <xsd:element name="UIDChannelCut" type="TTISSUE:uidChannelCutDef" />
+      <xsd:element name="UIDEsiID" type="TTISSUE:uidESIIDDef" />
+      <xsd:element name="URLAddress" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="URLAttachments" type="TTISSUE:URLAttachmentType" />
+      <xsd:element name="URLTitle">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="255" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="UnexecutableReason" type="TTISSUE:unexecutableReasonDef" />
+      <xsd:element name="UpdateIssue" type="TTISSUE:UpdateIssueType" />
+      <xsd:element name="UsageBilling" type="TTISSUE:UsageBillingType" />
+      <xsd:element name="UsageBillingResp" type="TTISSUE:UsageBillingRespType" />
+      <xsd:element name="UsageForTimePeriod" type="TTISSUE:usageForTimePeriodDef" />
+      <xsd:element name="UsageLoadedDateReq" type="xsd:boolean" />
+      <xsd:element name="UsageMatchesDateReq" type="xsd:boolean" />
+      <xsd:element name="UserID" type="TTISSUE:IDDef" />
+      <xsd:element name="UserName" type="TTISSUE:nameDef" />
+      <xsd:element default="false" name="ValidateESIID" type="xsd:boolean" />
+      <xsd:element default="false" name="ValidateEvaluationWindow" type="xsd:boolean" />
+      <xsd:element default="false" name="ValidateGlobalID" type="xsd:boolean" />
+      <xsd:element default="false" name="ValidateTDSP" type="xsd:boolean" />
+      <xsd:element name="Vote">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="(None)" />
+            <xsd:enumeration value="Agree" />
+            <xsd:enumeration value="Disagree" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="WarningDescription" type="TTISSUE:generalMsgDef" />
+      <xsd:element name="WeatherZone" type="TTISSUE:weatherZoneDef" />
+      <xsd:element name="Zip" type="TTISSUE:ZipType" />
+      <xsd:element name="ZipCode" type="TTISSUE:zipCodeDef" />
+      <xsd:element name="bDaysTillSMRD" type="xsd:int" />
+      <xsd:element name="kW" type="xsd:decimal" />
+      <xsd:element name="kWhUse" type="xsd:decimal" />
+      <xsd:attribute name="SchemaVersion">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="rc4-24" />
+            <xsd:enumeration value="10-05-2011" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="app">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="16" />
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:attribute>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="QueryIssueDetailRequest">
+    <wsdl:part name="request" element="ns0:IssueQueryDetailsRequest" />
+  </wsdl:message>
+  <wsdl:message name="QueryIssueDetailResponse">
+    <wsdl:part name="response" element="ns0:IssueQueryDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExceptionRequestMessage">
+    <wsdl:part name="ExceptionRequest" element="ns1:ExceptionRequest" />
+  </wsdl:message>
+  <wsdl:message name="SubmitIssueRequest">
+    <wsdl:part name="request" element="ns0:IssueSubmitRequest" />
+  </wsdl:message>
+  <wsdl:message name="SubmitIssueResponse">
+    <wsdl:part name="response" element="ns0:IssueSubmitResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryIssueListRequest">
+    <wsdl:part name="request" element="ns0:IssueQueryRequest" />
+  </wsdl:message>
+  <wsdl:message name="QueryIssueListResponse">
+    <wsdl:part name="response" element="ns0:IssueQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateIssueRequest">
+    <wsdl:part name="request" element="ns0:IssueUpdateRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateIssueResponse">
+    <wsdl:part name="response" element="ns0:IssueUpdateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Operations">
+    <wsdl:operation name="QueryDetail">
+      <wsdl:input message="tns:QueryIssueDetailRequest" />
+      <wsdl:output message="tns:QueryIssueDetailResponse" />
+      <wsdl:fault name="exception" message="tns:ExceptionRequestMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Submit">
+      <wsdl:input message="tns:SubmitIssueRequest" />
+      <wsdl:output message="tns:SubmitIssueResponse" />
+      <wsdl:fault name="exception" message="tns:ExceptionRequestMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryList">
+      <wsdl:input message="tns:QueryIssueListRequest" />
+      <wsdl:output message="tns:QueryIssueListResponse" />
+      <wsdl:fault name="exception" message="tns:ExceptionRequestMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:input message="tns:UpdateIssueRequest" />
+      <wsdl:output message="tns:UpdateIssueResponse" />
+      <wsdl:fault name="exception" message="tns:ExceptionRequestMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="inputBinding" type="tns:Operations">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="QueryDetail">
+      <soap:operation soapAction="/BusinessService/WS/TeamTrack/External/TeamTrackExternal.serviceagent/OperationsEndpoint1/QueryDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="response" />
+      </wsdl:output>
+      <wsdl:fault name="exception">
+        <soap:fault use="literal" name="exception" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Submit">
+      <soap:operation soapAction="/BusinessService/WS/TeamTrack/External/TeamTrackExternal.serviceagent/OperationsEndpoint1/Submit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="response" />
+      </wsdl:output>
+      <wsdl:fault name="exception">
+        <soap:fault use="literal" name="exception" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryList">
+      <soap:operation soapAction="/BusinessService/WS/TeamTrack/External/TeamTrackExternal.serviceagent/OperationsEndpoint1/QueryList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="response" />
+      </wsdl:output>
+      <wsdl:fault name="exception">
+        <soap:fault use="literal" name="exception" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap:operation soapAction="/BusinessService/WS/TeamTrack/External/TeamTrackExternal.serviceagent/OperationsEndpoint1/Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="request" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="response" />
+      </wsdl:output>
+      <wsdl:fault name="exception">
+        <soap:fault use="literal" name="exception" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TeamTrackExternal">
+    <wsdl:port name="input" binding="tns:inputBinding">
+      <soap:address location="http://localhost:8443/BusinessService/WS/TeamTrack/External/TeamTrackExternal.serviceagent/input" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

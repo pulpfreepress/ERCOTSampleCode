@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErcotTools", "ErcotTools\ErcotTools.csproj", "{7F7B4228-68B1-4FB2-963E-12F241B10CED}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FA50FEEB-29F4-400E-B120-4325109985D1} = {FA50FEEB-29F4-400E-B120-4325109985D1}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErcotAPILib", "..\ErcotAPILib\ErcotAPILib\ErcotAPILib.csproj", "{FA50FEEB-29F4-400E-B120-4325109985D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F7B4228-68B1-4FB2-963E-12F241B10CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F7B4228-68B1-4FB2-963E-12F241B10CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F7B4228-68B1-4FB2-963E-12F241B10CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F7B4228-68B1-4FB2-963E-12F241B10CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA50FEEB-29F4-400E-B120-4325109985D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA50FEEB-29F4-400E-B120-4325109985D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA50FEEB-29F4-400E-B120-4325109985D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA50FEEB-29F4-400E-B120-4325109985D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E3E46F0-77BC-4309-85E5-8A83076923D1}
+	EndGlobalSection
+EndGlobal

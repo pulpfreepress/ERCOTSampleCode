@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsntw="http://www.ercot.com/wsdl/2007-06/nodal/notification" xmlns:wsnt="http://www.ercot.com/schema/2007-06/nodal/notification" name="WS-BaseNotification" targetNamespace="http://www.ercot.com/wsdl/2007-06/nodal/notification" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import schemaLocation="Notification.xsd" namespace="http://www.ercot.com/schema/2007-06/nodal/notification" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Notify">
+    <wsdl:part name="Notify" element="wsnt:Notify" />
+  </wsdl:message>
+  <wsdl:message name="Acknowledge">
+    <wsdl:part name="Acknowledge" element="wsnt:Acknowledge" />
+  </wsdl:message>
+  <wsdl:message name="Fault">
+    <wsdl:part name="Fault" element="wsnt:Fault" />
+  </wsdl:message>
+  <wsdl:portType name="NotificationConsumer">
+    <wsdl:operation name="Notify">
+      <wsdl:input message="wsntw:Notify" />
+      <wsdl:output message="wsntw:Acknowledge" />
+      <wsdl:fault name="fault1" message="wsntw:Fault" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
